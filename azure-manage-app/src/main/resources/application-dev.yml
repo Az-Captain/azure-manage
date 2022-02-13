@@ -1,0 +1,87 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: 用户管理
+  # mysql配置
+  db:
+    character-encoding: ?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/test${spring.db.character-encoding}
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      # 数据源的其他配置
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      # 当值大于0时poolPreparedStatements会自动修改为true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 合并多个DruidDataSource的监控数据
+      use-global-data-source-stat: false
+      # 配置扩展插件
+      filters: stat,wall,slf4j
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 定时输出统计信息到日志中，并每次输出日志会导致清零（reset）连接池相关的计数器。
+      time-between-log-stats-millis: 300000
+
+#更多数据源
+#custom:
+#  profiles: dev
+#  datasourse:
+#    names: db1,db2
+#    db1:
+#      url: jdbc:mysql://localhost:3306/demodb?${spring.db.character-encoding}
+#      username: root
+#      password: root
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#    db2:
+#      url:jdbc:oracle:thin:@localhost:1521:oracle
+#      username:sys
+#      password:sys
+#      driver-class-name: oracle.jdbc.driver.OracleDriver
+
+mybatis-plus:
+  global-config:
+    field-strategy: 1
+    db-config:
+      id-type: auto
+      logic-delete-field: del_flag  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  mapper-locations: classpath*:/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: az.azure.manage.entity.*
+
+#  mapper-locations: classpath*:/mapper/*.xml  #sql映射文件位置
+  #MyBatis 配置文件位置
+#  config-location: classpath:mybatis-config.xml
+
+swagger:
+  enabled: true
+  title: ${spring.application.name}
+  version: "@project.version@"
+  description: 用户管理
+  base-package: az.azure
+  contact:
+    name: Az
+    email: azt0903@163.com
+    url: https:www.az.com
+  ui-config:
+    json-editor: true
+    show-request-headers: true
+
+

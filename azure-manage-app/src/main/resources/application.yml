@@ -1,0 +1,31 @@
+server:
+  port: 9003
+
+spring:
+  application:
+    name: Azure
+  profiles:
+    active: dev
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    type: com.alibaba.druid.pool.DruidDataSource
+#
+#mybatis-plus:
+#  mapper-locations: classpath*:/mapper/*.xml
+#  config-location: classpath:mybatis-config.xml
+#
+#swagger:
+#  enabled: true
+#  title: ${spring.application.name}
+#  version: "@project.version@"
+#  description: 系统描述
+#  base-package: 包路径（重要）
+#  ui-config:
+#    json-editor: true
+#    show-request-headers: true
+#  contact:
+#    name: Az
+#    email: azt0903@163.com
