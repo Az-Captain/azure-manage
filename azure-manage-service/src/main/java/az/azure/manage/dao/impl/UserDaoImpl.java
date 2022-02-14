@@ -2,7 +2,6 @@ package az.azure.manage.dao.impl;
 
 import az.azure.manage.constants.ColumnName;
 import az.azure.manage.dao.UserDao;
-import az.azure.manage.domain.DomainConstants;
 import az.azure.manage.entity.UserPo;
 import az.azure.manage.mapper.UserMapper;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
@@ -21,8 +20,9 @@ public class UserDaoImpl extends ServiceImpl<UserMapper, UserPo> implements User
     @Override
     public Page<UserPo> page(Page<UserPo> page, Wrapper<UserPo> queryWrapper) {
         QueryWrapper<UserPo> wrapper = new QueryWrapper<>();
-        wrapper.eq(ColumnName.DEL_FLAG, DomainConstants.DEL_FLAG_NORMAL)
-                .orderByDesc(ColumnName.CREATE_TIME);
+//        wrapper.eq(ColumnName.DEL_FLAG, DomainConstants.DEL_FLAG_NORMAL)
+//                .orderByDesc(ColumnName.CREATE_TIME);
+        wrapper.orderByDesc(ColumnName.CREATE_TIME);
         queryWrapper = wrapper;
         return super.page(page, queryWrapper);
     }
