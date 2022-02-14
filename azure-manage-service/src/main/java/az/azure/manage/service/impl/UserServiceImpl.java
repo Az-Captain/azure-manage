@@ -86,4 +86,9 @@ public class UserServiceImpl implements UserService {
         return this.userDao.delete(entity);
     }
 
+    @Override
+    public boolean delete(String id) {
+        return userDao.delete(id);
+    }
+
 }

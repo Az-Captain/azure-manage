@@ -29,7 +29,7 @@ public class UserDaoImpl extends ServiceImpl<UserMapper, UserPo> implements User
 
     @Override
     public int selectCount(Wrapper<UserPo> queryWrapper) {
-        return baseMapper.selectCount(null);
+        return super.count(null);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class UserDaoImpl extends ServiceImpl<UserMapper, UserPo> implements User
 
     @Override
     public UserPo queryById(String id) {
-        return baseMapper.selectById(id);
+        return super.getById(id);
     }
 
     @Override
@@ -50,6 +50,11 @@ public class UserDaoImpl extends ServiceImpl<UserMapper, UserPo> implements User
     @Override
     public boolean delete(UserPo entity) {
         return super.updateById(entity);
+    }
+
+    @Override
+    public boolean delete(String id) {
+        return super.removeById(id);
     }
 
 }

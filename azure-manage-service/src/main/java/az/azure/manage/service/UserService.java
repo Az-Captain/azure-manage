@@ -50,10 +50,18 @@ public interface UserService {
 
     /**
      * 根据单个ID删除
+     * 通过dao使用update语句来实现
      *
      * @param id 用户ID
      * @return 是否删除成功
      */
     boolean deleteById(String id);
 
+    /**
+     * 根据单个ID删除
+     * 通过mybatis-plus配置实现
+     * @param id 用户Id
+     * @return 是否删除成功
+     */
+    boolean delete(String id);
 }

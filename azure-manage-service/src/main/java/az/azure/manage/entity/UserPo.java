@@ -1,8 +1,6 @@
 package az.azure.manage.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +32,7 @@ public class UserPo implements Serializable {
     @ApiModelProperty("电子邮箱")
     private String email;
 
+    @TableLogic
     @ApiModelProperty("删除标志 0:未删除, 1:已删除")
     private String delFlag;
 
