@@ -21,8 +21,9 @@ public class UserDaoImpl extends ServiceImpl<UserMapper, UserPo> implements User
     @Override
     public Page<UserPo> page(Page<UserPo> page, Wrapper<UserPo> queryWrapper) {
         QueryWrapper<UserPo> wrapper = new QueryWrapper<>();
-        wrapper.eq(ColumnName.DEL_FLAG, DomainConstants.DEL_FLAG_NORMAL)
-                .orderByDesc(ColumnName.CREATE_TIME);
+//        wrapper.eq(ColumnName.DEL_FLAG, DomainConstants.DEL_FLAG_NORMAL)
+//                .orderByDesc(ColumnName.CREATE_TIME);
+        wrapper.orderByDesc(ColumnName.CREATE_TIME);
         queryWrapper = wrapper;
         return super.page(page, queryWrapper);
     }
