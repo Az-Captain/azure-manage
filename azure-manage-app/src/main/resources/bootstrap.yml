@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: 用户管理
+  cloud:
+    nacos:
+      config:
+        group: DEFAULT_GROUP
+        file-extension: yaml
+        refresh-enabled: true
+        server-addr: 127.0.0.1:8848
+        namespace: 1625c24f-fb68-4207-a9a7-0abbf6c5fe4d
+        prefix: ${spring.application.name}
+        name: azure-dev.yaml
