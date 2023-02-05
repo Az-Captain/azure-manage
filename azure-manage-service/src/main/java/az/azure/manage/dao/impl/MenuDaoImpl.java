@@ -24,4 +24,9 @@ public class MenuDaoImpl extends ServiceImpl<MenuMapper, MenuPo> implements Menu
     public List<MenuPo> getList() {
         return super.list();
     }
+
+    @Override
+    public MenuPo getMenuById(String id) {
+        return super.getById(id);
+    }
 }

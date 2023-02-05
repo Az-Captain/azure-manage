@@ -12,6 +12,7 @@ import az.azure.manage.service.MenuService;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -49,6 +50,36 @@ public class MenuServiceImpl implements MenuService {
             return menuVos;
         }
         return menuVoList;
+    }
+
+    @Override
+    public List<MenuVo> getMenuById(String id) {
+        MenuPo menuPo = menuDao.getMenuById(id);
+        MenuVo menuVo = BeanCopyUtils.copyBean(menuPo, MenuVo.class);
+        List<MenuPo> menuPos = menuDao.getList();
+
+        List<MenuVo> menuVoList = Lists.newArrayList();
+        for (MenuPo entity : menuPos) {
+            MenuVo menuVo1 = BeanCopyUtils.copyBean(entity, MenuVo.class);
+            menuVoList.add(menuVo1);
+        }
+        List<MenuVo> childrens = getChildrens(menuVo, menuVoList);
+        System.out.println("**********************************");
+        List<String> idList = Lists.newArrayList();
+        System.out.println(getidList(childrens,idList));
+        System.out.println("**********************************");
+        return childrens;
+    }
+
+    public List<String> getidList(List<MenuVo> list,List<String> idList){
+        for (MenuVo menuVo : list) {
+            idList.add(menuVo.getId());
+            if(!CollectionUtils.isEmpty(menuVo.getChildList())){
+                getidList(menuVo.getChildList(),idList);
+            }
+        }
+        return idList;
+
     }
 
     /**

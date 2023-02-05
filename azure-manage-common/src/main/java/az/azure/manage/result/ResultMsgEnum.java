@@ -24,7 +24,7 @@ public enum ResultMsgEnum {
 
     AUTH_ERROR(true, HttpStatus.BAD_GATEWAY.value(), "Bad Gateway"),
     SERVER_UNAVAILABLE(true, HttpStatus.SERVICE_UNAVAILABLE.value(), "Service Unavailable"),
-    ADD_ITEM_SUCCESS(true, HttpStatus.CREATED.value(), "添加商品成功！"),
+    ADD_ITEM_SUCCESS(true, HttpStatus.CREATED.value(), "添加成功！"),
     NAME_CANNOT_BE_NULL(false, HttpStatus.BAD_REQUEST.value(), "名称不能为空"),
     ;
     /**

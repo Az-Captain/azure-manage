@@ -11,7 +11,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://localhost:3306/test${spring.db.character-encoding}
     username: root
-    password: root
+    password: rootroot
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       # 数据源的其他配置

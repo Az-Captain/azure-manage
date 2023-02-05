@@ -1,5 +1,6 @@
 package az.azure.manage.controller;
 
+import az.azure.manage.dto.TransDto;
 import az.azure.manage.dto.UserAddDto;
 import az.azure.manage.result.ResponseEntity;
 import az.azure.manage.service.UserService;
@@ -37,6 +38,5 @@ public class HelloTestController {
     public ResponseEntity<Boolean> addTest(@PathVariable String id) {
         return ResponseEntity.success(userService.delete(id));
     }
-
 
 }

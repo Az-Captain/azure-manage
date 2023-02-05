@@ -23,7 +23,7 @@ public class MenuController {
     private MenuService menuService;
 
     @PostMapping("/add")
-    @ApiOperation(value = "新增用户", response = String.class)
+    @ApiOperation(value = "新增菜单", response = String.class)
     public ResponseEntity<String> insert(@RequestBody MenuAddDto menuAddDto) {
         return ResponseEntity.success(menuService.insert(menuAddDto));
     }
@@ -32,5 +32,11 @@ public class MenuController {
     @ApiOperation("获取菜单列表")
     public ResponseEntity<List<MenuVo>> list() {
         return ResponseEntity.success(menuService.list());
+    }
+
+    @GetMapping("/list/{id}")
+    @ApiOperation("根据id获取对应的菜单")
+    public ResponseEntity<List<MenuVo>> getMenuById(@PathVariable("id") String id) {
+        return ResponseEntity.success(menuService.getMenuById(id));
     }
 }

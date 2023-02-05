@@ -25,4 +25,6 @@ public interface MenuService {
      * @return 菜单列表
      */
     List<MenuVo> list();
+
+    List<MenuVo> getMenuById(String id);
 }

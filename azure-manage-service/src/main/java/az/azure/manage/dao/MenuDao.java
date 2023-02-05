@@ -26,4 +26,5 @@ public interface MenuDao {
      */
     List<MenuPo> getList();
 
+    MenuPo getMenuById(String id);
 }
