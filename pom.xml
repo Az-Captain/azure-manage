@@ -126,6 +126,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <!-- word转pdf-->
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-words</artifactId>
+            <version>15.8.0</version>
+        </dependency>
+
     </dependencies>
 
     <!--子项目要引入依赖（填写groupId，artifactId）才可以用 -->
