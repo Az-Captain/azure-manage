@@ -1,5 +1,6 @@
 package az.azure.manage.service.impl;
 
+import az.azure.manage.constants.BaseConstants;
 import az.azure.manage.dao.MenuDao;
 import az.azure.manage.dto.MenuAddDto;
 import az.azure.manage.entity.MenuPo;
@@ -7,12 +8,12 @@ import az.azure.manage.utils.BeanCopyUtils;
 import az.azure.manage.utils.SnowflakeIdUtil;
 import az.azure.manage.vo.MenuVo;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import az.azure.manage.service.MenuService;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -29,9 +30,11 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public String insert(MenuAddDto menuAddDto) {
         MenuPo entity = BeanCopyUtils.copyBean(menuAddDto, MenuPo.class);
+        if(StringUtils.isBlank(entity.getParentId())){
+            entity.setParentId(BaseConstants.PARENT_MENU_ID);
+        }
         entity.setId(String.valueOf(SnowflakeIdUtil.getSnowflakeId()));
-        menuDao.insert(entity);
-        return entity.getId();
+        return menuDao.insert(entity) ? entity.getId() : null;
     }
 
     @Override
@@ -44,9 +47,10 @@ public class MenuServiceImpl implements MenuService {
             menuVoList.add(menuVo);
         }
         if (!CollectionUtils.isEmpty(menuVoList)) {
-            List<MenuVo> menuVos = menuVoList.stream().filter(m -> "0".equals(m.getParentId())).peek(
-                    (m) -> m.setChildList(getChildrens(m, menuVoList))
-            ).collect(Collectors.toList());
+            List<MenuVo> menuVos = menuVoList.stream()
+                    .filter(m -> BaseConstants.PARENT_MENU_ID.equals(m.getParentId()))
+                    .peek((m) -> m.setChildList(getChildrens(m, menuVoList)))
+                    .collect(Collectors.toList());
             return menuVos;
         }
         return menuVoList;
@@ -63,12 +67,14 @@ public class MenuServiceImpl implements MenuService {
             MenuVo menuVo1 = BeanCopyUtils.copyBean(entity, MenuVo.class);
             menuVoList.add(menuVo1);
         }
-        List<MenuVo> childrens = getChildrens(menuVo, menuVoList);
-        System.out.println("**********************************");
-        List<String> idList = Lists.newArrayList();
-        System.out.println(getidList(childrens,idList));
-        System.out.println("**********************************");
-        return childrens;
+        List<MenuVo> children = this.getChildrens(menuVo, menuVoList);
+        menuVo.setChildList(children);
+//        Lists.newArrayList(menuVo);
+//        System.out.println("**********************************");
+//        List<String> idList = Lists.newArrayList();
+//        System.out.println(getidList(childrens,idList));
+//        System.out.println("**********************************");
+        return Lists.newArrayList(menuVo);
     }
 
     public List<String> getidList(List<MenuVo> list,List<String> idList){

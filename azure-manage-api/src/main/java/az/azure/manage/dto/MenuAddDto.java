@@ -3,6 +3,8 @@ package az.azure.manage.dto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * @author Az
  * @date 2022/4/10
@@ -10,9 +12,10 @@ import lombok.Data;
 @Data
 public class MenuAddDto {
 
+    @NotBlank(message = "客户名不能为空")
     @ApiModelProperty("名称")
     private String name;
 
-    @ApiModelProperty("父ID")
+    @ApiModelProperty(value = "父ID(空或0表示父级菜单)")
     private String parentId;
 }

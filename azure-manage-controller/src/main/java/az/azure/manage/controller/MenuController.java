@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class MenuController {
 
     @PostMapping("/add")
     @ApiOperation(value = "新增菜单", response = String.class)
-    public ResponseEntity<String> insert(@RequestBody MenuAddDto menuAddDto) {
+    public ResponseEntity<String> insert(@Valid @RequestBody MenuAddDto menuAddDto) {
         return ResponseEntity.success(menuService.insert(menuAddDto));
     }
 
