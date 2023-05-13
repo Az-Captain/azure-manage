@@ -8,7 +8,12 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
+
+import javax.annotation.Resource;
 
 /**
  * @author Az
@@ -16,6 +21,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class UserDaoImpl extends ServiceImpl<UserMapper, UserPo> implements UserDao {
+    @Resource
+    private UserMapper userMapper;
 
     @Override
     public Page<UserPo> page(Page<UserPo> page, Wrapper<UserPo> queryWrapper) {
@@ -49,7 +56,7 @@ public class UserDaoImpl extends ServiceImpl<UserMapper, UserPo> implements User
 
     @Override
     public boolean delete(UserPo entity) {
-        return super.updateById(entity);
+        return this.userMapper.updateDelFlag(entity) > 0;
     }
 
     @Override

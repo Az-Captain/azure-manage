@@ -51,7 +51,11 @@ spring:
 #      username:sys
 #      password:sys
 #      driver-class-name: oracle.jdbc.driver.OracleDriver
-
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    connect-timeout: 1000
 mybatis-plus:
   global-config:
     db-config:

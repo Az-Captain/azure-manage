@@ -2,10 +2,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="az.azure.manage.dao.UserDao">
+<mapper namespace="az.azure.manage.mapper.UserMapper">
     <!--<select id="selectPageText" resultType="com.az.mybatisplus.entity.UserPo">-->
     <!--    select *-->
     <!--    from user-->
     <!--    order by create_time desc-->
     <!--</select>-->
+    <update id="updateDelFlag">
+        update user set del_flag = #{user.delFlag}
+        where id = #{user.id}
+    </update>
 </mapper>

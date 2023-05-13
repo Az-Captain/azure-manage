@@ -3,12 +3,14 @@ package az.azure.manage.vo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author Az
  * @date 2022/2/9
  */
 @Data
-public class UserVo {
+public class UserVo implements Serializable {
 
     @ApiModelProperty("用户姓名")
     private String name;

@@ -15,6 +15,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -62,11 +66,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(cacheNames = "user")
     public UserVo queryById(String id) {
         return BeanCopyUtils.copyBean(userDao.queryById(id), UserVo.class);
     }
 
     @Override
+    @CacheEvict(cacheNames = "user", key = "#id")
     public boolean updateById(UserUpdateDto updateDto, String id) {
         UserPo entity = userDao.queryById(id);
         BeanUtils.copyProperties(updateDto, entity);
@@ -77,13 +83,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CacheEvict(cacheNames = "user", key = "#id")
     public boolean deleteById(String id) {
-        UserPo entity = this.userDao.queryById(id);
-        if (StringUtils.equals(entity.getDelFlag(), DomainConstants.DEL_FLAG_DELETED)) {
+        UserPo exist = this.userDao.queryById(id);
+        if (StringUtils.equals(exist.getDelFlag(), DomainConstants.DEL_FLAG_DELETED)) {
             return true;
         }
-        entity.setDelFlag(DomainConstants.DEL_FLAG_DELETED);
-        return this.userDao.delete(entity);
+        exist.setDelFlag(DomainConstants.DEL_FLAG_DELETED);
+        return this.userDao.delete(exist);
     }
 
     @Override
