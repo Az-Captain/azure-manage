@@ -29,5 +29,9 @@
             <groupId>az.azure</groupId>
             <artifactId>azure-manage-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-words</artifactId>
+        </dependency>
     </dependencies>
 </project>

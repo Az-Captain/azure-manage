@@ -9,9 +9,9 @@ spring:
     character-encoding: ?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:3306/test${spring.db.character-encoding}
-    username: root
-    password: rootroot
+    url: jdbc:mysql://${env.database.write.host:127.0.0.1}:${env.database.write.port:3306}/${env.database.write.name:test}${spring.db.character-encoding}
+    username: ${env.database.write.username:erdcloud}
+    password: ${env.database.write.password:Pw!123456}
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       # 数据源的其他配置
@@ -36,7 +36,6 @@ spring:
       connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
       # 定时输出统计信息到日志中，并每次输出日志会导致清零（reset）连接池相关的计数器。
       time-between-log-stats-millis: 300000
-
 #更多数据源
 #custom:
 #  profiles: dev

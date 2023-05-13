@@ -25,5 +25,9 @@
             <groupId>az.azure</groupId>
             <artifactId>azure-manage-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
     </dependencies>
 </project>

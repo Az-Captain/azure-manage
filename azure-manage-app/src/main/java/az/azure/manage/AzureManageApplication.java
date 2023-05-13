@@ -47,7 +47,7 @@ class IndexController {
     public ApplicationRunner applicationRunner() {
         return applicationArguments -> {
             try {
-                log.info("启用成功: " + "https://" + InetAddress.getLocalHost().getHostAddress() + ":" + port);
+                log.info("启用成功: " + "http://" + InetAddress.getLocalHost().getHostAddress() + ":" + port);
             } catch (UnknownHostException e) {
                 log.error(e.getMessage());
             }
