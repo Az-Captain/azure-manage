@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: user-manage
+  cloud:
+    nacos:
+#      locator:
+#        enabled: true
+#        lowerCaseServiceId: true
+      discovery:
+        enabled: true
+        server-addr: ${env.nacos.server.ip:127.0.0.1}:${env.nacos.server.port:8848}
+        namespace: ${env.nacos.server.config.namespace:cfcec0ff-c761-4b04-8cf9-e8cd4ae1266c}
+        group: dev
+      config:
+        enabled: true
+        prefix: ${spring.application.name}
+        file-extension: yaml
+        server-addr: ${env.nacos.server.ip:127.0.0.1}:${env.nacos.server.port:8848}
+        namespace: ${env.nacos.server.config.namespace:cfcec0ff-c761-4b04-8cf9-e8cd4ae1266c}
+        group: DEFAULT_GROUP
+
+
+#  cloud:
+#    nacos:
+#      config:
+#        group: DEFAULT_GROUP
+#        file-extension: yaml
+#        refresh-enabled: true
+#        server-addr: 127.0.0.1:8848
+#        namespace: 1625c24f-fb68-4207-a9a7-0abbf6c5fe4d
+#        prefix: ${spring.application.name}
+#        name: azure-dev.yaml

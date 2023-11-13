@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>azure-manage-app</module>
+        <module>azure-manage-api</module>
+        <module>azure-manage-controller</module>
+        <module>azure-manage-service</module>
+        <module>azure-manage-common</module>
+    </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.7</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>az.azure</groupId>
+    <artifactId>azure-manage</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>azure-manage</name>
+    <description>azure-manage</description>
+
+    <properties>
+        <java.version>8</java.version>
+        <azure-manage.version>0.0.1-SNAPSHOT</azure-manage.version>
+        <mybatis-plus.version>3.3.2</mybatis-plus.version>
+        <spring-fox.version>2.9.2</spring-fox.version>
+        <swagger-bootstrap.version>1.9.6</swagger-bootstrap.version>
+        <swagger-starter.version>1.9.0.RELEASE</swagger-starter.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <dubbo.version>2.7.15</dubbo.version>
+        <druid.version>1.2.6</druid.version>
+        <log4j.version>1.2.14</log4j.version>
+        <validate.version>2.5.7</validate.version>
+        <starter-web.version>2.5.7</starter-web.version>
+        <mysql-connector.version>8.0.28</mysql-connector.version>
+        <fastjson.version>1.2.9</fastjson.version>
+        <poi-tl.version>1.12.1</poi-tl.version>
+<!--        <aspectjweaver.version>1.9.7</aspectjweaver.version>-->
+    </properties>
+
+    <!--子项目可直接用 -->
+    <dependencies>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!--日志-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <!--Swagger-BootstrapUI-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${spring-fox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>${swagger-bootstrap.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.spring4all</groupId>
+            <artifactId>swagger-spring-boot-starter</artifactId>
+            <version>${swagger-starter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <!--子项目要引入依赖（填写groupId，artifactId）才可以用 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>az.azure</groupId>
+                <artifactId>azure-manage-api</artifactId>
+                <version>${azure-manage.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>az.azure</groupId>
+                <artifactId>azure-manage-app</artifactId>
+                <version>${azure-manage.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>az.azure</groupId>
+                <artifactId>azure-manage-controller</artifactId>
+                <version>${azure-manage.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>az.azure</groupId>
+                <artifactId>azure-manage-service</artifactId>
+                <version>${azure-manage.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>az.azure</groupId>
+                <artifactId>azure-manage-common</artifactId>
+                <version>${azure-manage.version}</version>
+            </dependency>
+
+            <!--SpringBoot-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.5.7</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--SpringCloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>2020.0.6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--SpringCloudAlibaba-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2021.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+            </dependency>
+            <!--数据库连接-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+            </dependency>
+            <!--druid-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!--mybatis-plus-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <!--验证-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-validation</artifactId>
+                <version>${validate.version}</version>
+            </dependency>
+            <!-- word转pdf-->
+            <dependency>
+                <groupId>com.aspose</groupId>
+                <artifactId>aspose-words</artifactId>
+                <version>15.8.0</version>
+            </dependency>
+            <!--fastJson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <!--poi-tl（poi template language）-->
+            <dependency>
+                <groupId>com.deepoove</groupId>
+                <artifactId>poi-tl</artifactId>
+                <version>${poi-tl.version}</version>
+            </dependency>
+
+<!--            <dependency>-->
+<!--                <groupId>org.aspectj</groupId>-->
+<!--                <artifactId>aspectjweaver</artifactId>-->
+<!--                <version>${aspectjweaver.version}</version>-->
+<!--            </dependency>-->
+
+        </dependencies>
+    </dependencyManagement>
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <fork>true</fork>-->
+<!--                    <addResources>true</addResources>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+</project>

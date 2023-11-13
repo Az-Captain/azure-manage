@@ -1,0 +1,63 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: 用户管理
+  # mysql配置
+  db:
+    character-encoding: ?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/test${spring.db.character-encoding}
+    username: root
+    password: rootroot
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      # 数据源的其他配置
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      # 当值大于0时poolPreparedStatements会自动修改为true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 合并多个DruidDataSource的监控数据
+      use-global-data-source-stat: false
+      # 配置扩展插件
+      filters: stat,wall,slf4j
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 定时输出统计信息到日志中，并每次输出日志会导致清零（reset）连接池相关的计数器。
+      time-between-log-stats-millis: 300000
+company:
+  name: Azure
+  address: hoten
+
+env:
+  database:
+    write:
+      host: 127.0.0.1
+      port: 3306
+      name: test
+      username: root
+      password: rootroot
+    read:
+      host: 127.0.0.1
+      port: 3306
+      name: test
+      username: root
+      password: rootroot
+  nacos:
+    server:
+      ip: 127.0.0.1
+      port: 8848
+      config:
+        namespace: cfcec0ff-c761-4b04-8cf9-e8cd4ae1266c
+        group: DEFAULT_GROUP
