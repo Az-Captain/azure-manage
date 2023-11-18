@@ -16,9 +16,9 @@ public class AopDemoController {
 
     @GetMapping("/hello")
     String sayHello(@ApiParam("姓名") @RequestParam("name") String name) throws InterruptedException {
-        System.out.println("传递过来参数是" + name);
+        System.out.println("传递过来参数是 -> " + name);
         Thread.sleep(2000);
-        return "hello " + name;
+        return "hello," + name;
     }
 
 }
