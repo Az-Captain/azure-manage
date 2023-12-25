@@ -39,6 +39,7 @@
         <mysql-connector.version>8.0.28</mysql-connector.version>
         <fastjson.version>1.2.9</fastjson.version>
         <poi-tl.version>1.12.1</poi-tl.version>
+        <hutool.version>5.8.15</hutool.version>
 <!--        <aspectjweaver.version>1.9.7</aspectjweaver.version>-->
     </properties>
 
@@ -187,6 +188,11 @@
                 <groupId>com.deepoove</groupId>
                 <artifactId>poi-tl</artifactId>
                 <version>${poi-tl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
 
 <!--            <dependency>-->

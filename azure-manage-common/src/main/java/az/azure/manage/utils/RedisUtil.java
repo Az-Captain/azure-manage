@@ -1,21 +1,22 @@
 package az.azure.manage.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import javax.annotation.Resource;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Az
+ * @date 2022/2/9
+ */
 @Component
 public class RedisUtil {
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    @Resource
+    private final RedisTemplate<String, Object> redisTemplate;
 
     public RedisUtil(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
@@ -26,7 +27,7 @@ public class RedisUtil {
      *
      * @param key  键
      * @param time 时间(秒)
-     * @return
+     * @return 是否设置成功
      */
     public boolean expire(String key, long time) {
         try {
@@ -137,7 +138,7 @@ public class RedisUtil {
      *
      * @param key   键
      * @param delta 要增加几(大于0)
-     * @return
+     * @return 递增后结果
      */
     public long incr(String key, long delta) {
         if (delta < 0) {
@@ -151,7 +152,7 @@ public class RedisUtil {
      *
      * @param key   键
      * @param delta 要减少几(小于0)
-     * @return
+     * @return 递减后的结果
      */
     public long decr(String key, long delta) {
         if (delta < 0) {
@@ -288,7 +289,7 @@ public class RedisUtil {
      * @param key  键
      * @param item 项
      * @param by   要增加几(大于0)
-     * @return
+     * @return 递增后的值
      */
     public double hincr(String key, String item, double by) {
         return redisTemplate.opsForHash().increment(key, item, by);
@@ -300,7 +301,7 @@ public class RedisUtil {
      * @param key  键
      * @param item 项
      * @param by   要减少记(小于0)
-     * @return
+     * @return 递减后的值
      */
     public double hdecr(String key, String item, double by) {
         return redisTemplate.opsForHash().increment(key, item, -by);
@@ -312,7 +313,7 @@ public class RedisUtil {
      * 根据key获取Set中的所有值
      *
      * @param key 键
-     * @return
+     * @return Set中的所有值
      */
     public Set<Object> sGet(String key) {
         try {
@@ -380,7 +381,7 @@ public class RedisUtil {
      * 获取set缓存的长度
      *
      * @param key 键
-     * @return
+     * @return set的长度
      */
     public long sGetSetSize(String key) {
         try {
@@ -415,7 +416,7 @@ public class RedisUtil {
      * @param key   键
      * @param start 开始
      * @param end   结束  0 到 -1代表所有值
-     * @return
+     * @return list中的元素
      */
     public List<Object> lGet(String key, long start, long end) {
         try {
@@ -430,7 +431,7 @@ public class RedisUtil {
      * 获取list缓存的长度
      *
      * @param key 键
-     * @return
+     * @return 缓存长度
      */
     public long lGetListSize(String key) {
         try {
@@ -446,7 +447,7 @@ public class RedisUtil {
      *
      * @param key   键
      * @param index 索引  index>=0时， 0 表头，1 第二个元素，依次类推；index<0时，-1，表尾，-2倒数第二个元素，依次类推
-     * @return
+     * @return list中缩影对应的值
      */
     public Object lGetIndex(String key, long index) {
         try {
@@ -462,7 +463,7 @@ public class RedisUtil {
      *
      * @param key   键
      * @param value 值
-     * @return
+     * @return 是否设置成功
      */
     public boolean lSet(String key, Object value) {
         try {
@@ -480,7 +481,7 @@ public class RedisUtil {
      * @param key   键
      * @param value 值
      * @param time  时间(秒)
-     * @return
+     * @return 是否设置成功
      */
     public boolean lSet(String key, Object value, long time) {
         try {
@@ -500,7 +501,7 @@ public class RedisUtil {
      *
      * @param key   键
      * @param value 值
-     * @return
+     * @return 是否设置成功
      */
     public boolean lSet(String key, List<Object> value) {
         try {
@@ -518,7 +519,7 @@ public class RedisUtil {
      * @param key   键
      * @param value 值
      * @param time  时间(秒)
-     * @return
+     * @return 是否设置成功
      */
     public boolean lSet(String key, List<Object> value, long time) {
         try {
@@ -539,7 +540,7 @@ public class RedisUtil {
      * @param key   键
      * @param index 索引
      * @param value 值
-     * @return
+     * @return 是否修改成功
      */
     public boolean lUpdateIndex(String key, long index, Object value) {
         try {

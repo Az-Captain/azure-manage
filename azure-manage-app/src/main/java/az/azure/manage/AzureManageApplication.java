@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,6 +26,7 @@ import java.net.UnknownHostException;
 @EnableSwagger2Doc
 @EnableCaching
 @SpringBootApplication
+@EnableScheduling
 public class AzureManageApplication {
 
     public static void main(String[] args) {
