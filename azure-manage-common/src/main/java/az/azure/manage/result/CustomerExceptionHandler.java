@@ -15,7 +15,7 @@ public class CustomerExceptionHandler {
      * 自定义异常处理 ServerBusyException
      */
     @ExceptionHandler(MyException.class)
-    public ResponseEntity<String> ErrorHandler(MyException e) {
+    public ResponseEntity<String> errorHandler(MyException e) {
         log.error("服务器正忙，请稍后再试!！", e);
         return ResponseEntity.error(ResultMsgEnum.SERVER_UNAVAILABLE.getCode(),ResultMsgEnum.SERVER_UNAVAILABLE.getMessage());
     }
@@ -24,7 +24,7 @@ public class CustomerExceptionHandler {
      * 统一未知异常处理
      */
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> Execption(Exception e) {
+    public ResponseEntity<String> execption(Exception e) {
         log.error("未知异常！", e);
         return ResponseEntity.error(e.getMessage());
     }
