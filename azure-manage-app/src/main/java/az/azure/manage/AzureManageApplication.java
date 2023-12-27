@@ -26,7 +26,7 @@ import java.net.UnknownHostException;
 @EnableSwagger2Doc
 @EnableCaching
 @SpringBootApplication
-@EnableScheduling
+//@EnableScheduling
 public class AzureManageApplication {
 
     public static void main(String[] args) {
