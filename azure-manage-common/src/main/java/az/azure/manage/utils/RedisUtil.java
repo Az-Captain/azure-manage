@@ -1,5 +1,6 @@
 package az.azure.manage.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -13,8 +14,8 @@ import java.util.concurrent.TimeUnit;
  * @date 2022/2/9
  */
 @Component
+@Slf4j
 public class RedisUtil {
-
     @Resource
     private final RedisTemplate<String, Object> redisTemplate;
 
@@ -568,6 +569,13 @@ public class RedisUtil {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    /**
+     * 发布消息
+     */
+    public void publish(String channel, String message) {
+        redisTemplate.convertAndSend(channel, message);
     }
 
 }

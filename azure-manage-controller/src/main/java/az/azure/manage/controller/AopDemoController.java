@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api("测试AOP注解")
 public class AopDemoController {
 
-    @GetMapping("/hello")
+    @GetMapping("/hi")
     String sayHello(@ApiParam("姓名") @RequestParam("name") String name) throws InterruptedException {
         System.out.println("传递过来参数是 -> " + name);
         Thread.sleep(2000);

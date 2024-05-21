@@ -1,10 +1,10 @@
 package az.azure.manage.controller;
 
+import az.azure.manage.constants.RedisChanelConstants;
 import az.azure.manage.utils.RedisUtil;
 import com.google.common.collect.Sets;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -14,11 +14,11 @@ import java.util.Set;
  * @author Az
  * @date 2023/9/15
  */
-@Slf4j
 @RequestMapping("/redis")
 @RestController
 @Api(tags = "redis测试接口")
 public class RedisController {
+
     @Resource
     private RedisUtil redisUtil;
 
@@ -53,4 +53,11 @@ public class RedisController {
         }
         return set.size() == 1;
     }
+
+    @GetMapping("publish")
+    @ApiOperation(value = "发布消息", response = Void.class)
+    public void publish(@RequestParam("message") String message) {
+        redisUtil.publish(RedisChanelConstants.CHANNEL_GLOBAL_NAME, message);
+    }
+
 }

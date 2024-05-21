@@ -6,7 +6,11 @@ import az.azure.manage.result.ResponseEntity;
 import az.azure.manage.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 
@@ -14,8 +18,8 @@ import javax.annotation.Resource;
  * @author Az
  * @date 2022/2/12
  */
-@RestController
-@RequestMapping("/test")
+//@Controller
+@RequestMapping("")
 @Api(tags = "测试接口")
 public class HelloTestController {
 
@@ -37,6 +41,12 @@ public class HelloTestController {
     @ApiOperation("测试-删除")
     public ResponseEntity<Boolean> addTest(@PathVariable String id) {
         return ResponseEntity.success(userService.delete(id));
+    }
+
+    @GetMapping("/")
+    public ModelAndView index(Model model) {
+        ModelAndView index = new ModelAndView("index");
+        return index;
     }
 
 }

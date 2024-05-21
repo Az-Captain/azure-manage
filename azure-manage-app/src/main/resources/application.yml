@@ -6,6 +6,13 @@ spring:
     name: Azure
   profiles:
     active: dev
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 1MB
+file:
+  upload:
+    path: /Users/azimat/IdeaProject/Play/azure-manage/docs/uploadFile/
 #  datasource:
 #    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
 #    username: root
@@ -29,3 +36,29 @@ spring:
 #  contact:
 #    name: Az
 #    email: azt0903@163.com
+
+#元数据测试
+com:
+  didi:
+    from: this is test,look at class didiProperties
+logging:
+  charset:
+---
+#  其他环境的时候则多以命令参数激活为主。
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+name: dev.az.com
+---
+spring:
+  config:
+    activate:
+      on-profile: "test"
+name: test.az.com
+---
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+name: prod.az.com
