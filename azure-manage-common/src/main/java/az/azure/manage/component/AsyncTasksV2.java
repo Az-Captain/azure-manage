@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 
 /**
+ * 添加异步任务注解
  * @author Az
  * @date 2024/5/22
  */
