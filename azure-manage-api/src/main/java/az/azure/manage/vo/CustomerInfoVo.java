@@ -1,6 +1,8 @@
 package az.azure.manage.vo;
 
 
+import az.azure.manage.sensitive.DesensitizationTypeEnum;
+import az.azure.manage.sensitive.Desensitize;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -30,18 +32,21 @@ public class CustomerInfoVo {
     @ApiModelProperty("性别 1-男；2-女")
     private String gender;
 
+    @Desensitize(type = DesensitizationTypeEnum.PHONE)
     @ApiModelProperty("手机号")
     private String phone;
 
     @ApiModelProperty("电子邮箱")
     private String email;
 
+    @Desensitize(type = DesensitizationTypeEnum.ID_CARD)
     @ApiModelProperty("身份证号码")
     private String idCard;
 
     @ApiModelProperty("银行账户名")
     private String bankAccountName;
 
+    @Desensitize(type = DesensitizationTypeEnum.BANK_CARD)
     @ApiModelProperty("银行卡号")
     private String bankAccountNo;
 

@@ -1,12 +1,15 @@
 package az.azure.manage.service.impl;
 
+import az.azure.manage.component.DesensitizeComponentV1;
 import az.azure.manage.dao.CustomerInfoDao;
 import az.azure.manage.dto.PageDto;
 import az.azure.manage.entity.CustomerInfoPo;
+import az.azure.manage.component.DesensitizeComponent;
 import az.azure.manage.service.CustomerInfoService;
 import az.azure.manage.vo.CustomerInfoVo;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,6 +24,10 @@ import javax.annotation.Resource;
 public class CustomerInfoServiceImpl implements CustomerInfoService {
     @Resource
     private CustomerInfoDao customerInfoDao;
+    @Resource
+    private DesensitizeComponentV1 desensitizeComponentV1;
+    @Resource
+    private DesensitizeComponent desensitizeComponent;
 
     @Override
     public Page<CustomerInfoVo> page(PageDto pageDto) {
@@ -28,7 +35,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         long pageSize = Long.parseLong(pageDto.getPageSize());
         Page<CustomerInfoPo> page = customerInfoDao.page(new Page<>(pageNo, pageSize), null);
         Page<CustomerInfoVo> pageVo = new Page<>();
-        BeanUtil.copyProperties(page,pageVo);
+        BeanUtil.copyProperties(page, pageVo);
         return pageVo;
 
     }
@@ -40,10 +47,15 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         return customerInfoPo.getId();
     }
 
+
     @Override
+    @SneakyThrows
     public CustomerInfoVo queryById(String id) {
         CustomerInfoPo customerInfoPo = customerInfoDao.queryById(id);
-        return BeanUtil.copyProperties(customerInfoPo, CustomerInfoVo.class);
+        CustomerInfoVo customerInfoVo = new CustomerInfoVo();
+//        desensitizeComponent.desensitize(customerInfoPo, customerInfoVo);
+        desensitizeComponentV1.desensitize(customerInfoPo, customerInfoVo);
+        return customerInfoVo;
     }
 
     @Override

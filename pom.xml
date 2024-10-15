@@ -72,6 +72,11 @@
             <artifactId>swagger-spring-boot-starter</artifactId>
             <version>${swagger-starter.version}</version>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
     </dependencies>
 
     <!--子项目要引入依赖（填写groupId，artifactId）才可以用 -->
@@ -187,11 +192,6 @@
                 <groupId>com.deepoove</groupId>
                 <artifactId>poi-tl</artifactId>
                 <version>${poi-tl.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
             </dependency>
 
 <!--            <dependency>-->
