@@ -53,8 +53,8 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     public CustomerInfoVo queryById(String id) {
         CustomerInfoPo customerInfoPo = customerInfoDao.queryById(id);
         CustomerInfoVo customerInfoVo = new CustomerInfoVo();
-//        desensitizeComponent.desensitize(customerInfoPo, customerInfoVo);
-        desensitizeComponentV1.desensitize(customerInfoPo, customerInfoVo);
+        desensitizeComponent.desensitize(customerInfoPo, customerInfoVo);
+//        desensitizeComponentV1.desensitize(customerInfoPo, customerInfoVo);
         return customerInfoVo;
     }
 
