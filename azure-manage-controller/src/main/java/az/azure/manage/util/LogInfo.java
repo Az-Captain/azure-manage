@@ -1,5 +1,6 @@
 package az.azure.manage.util;
 
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -34,6 +35,11 @@ public class LogInfo {
         // 获取即将执行的方法名
         String funcName = signature.getName();
         System.out.println("执行前开始记录");
+        System.out.print("执行前开始记录,");
+        if (StringUtils.isNotEmpty(funcName)) {
+            System.out.print("执行方法为：" + funcName);
+            System.out.println();
+        }
         t1 = System.currentTimeMillis();
     }
 

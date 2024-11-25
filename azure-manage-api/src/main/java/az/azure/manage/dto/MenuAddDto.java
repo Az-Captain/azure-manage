@@ -2,6 +2,7 @@ package az.azure.manage.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 public class MenuAddDto {
 
     @NotBlank(message = "客户名不能为空")
+    @Length(max = 80)
     @ApiModelProperty("名称")
     private String name;
 

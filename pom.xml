@@ -26,6 +26,7 @@
     <properties>
         <java.version>8</java.version>
         <azure-manage.version>0.0.1-SNAPSHOT</azure-manage.version>
+        <spring-boot.version>2.5.7</spring-boot.version>
         <mybatis-plus.version>3.3.2</mybatis-plus.version>
         <spring-fox.version>2.9.2</spring-fox.version>
         <swagger-bootstrap.version>1.9.6</swagger-bootstrap.version>
@@ -35,10 +36,10 @@
         <druid.version>1.2.6</druid.version>
         <log4j.version>1.2.14</log4j.version>
         <validate.version>2.5.7</validate.version>
-        <starter-web.version>2.5.7</starter-web.version>
         <mysql-connector.version>8.0.28</mysql-connector.version>
         <fastjson.version>1.2.9</fastjson.version>
         <poi-tl.version>1.12.1</poi-tl.version>
+        <hutool.version>5.8.15</hutool.version>
 <!--        <aspectjweaver.version>1.9.7</aspectjweaver.version>-->
     </properties>
 
@@ -72,10 +73,9 @@
             <version>${swagger-starter.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-            <scope>runtime</scope>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
     </dependencies>
 
@@ -112,7 +112,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.5.7</version>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
